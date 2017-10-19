@@ -24,9 +24,13 @@ public class EasyCryptoAPI {
 	private static final String currentVersion = "1.0.0";
 
 	public enum ResultCode {
-		ESuccess,      /*!< Text was successfully en/decrypted. */
-		EError,        /*!< There was an error with en/decryption. */
-		ENotSupported  /*!< The method of en/decription is not supported by the library */
+		ESuccess,      /*!< Text was successfully encrypted. */
+		EError,        /*!< There was an error with encryption. */
+		ENotSupported,  /*!< The method of encryption is not supported by the library */
+		DSuccess,		/*!< Text was successfully decrypted*/
+		DError,			/*!< There was an error with decryption. */
+		DNotSupported	/*!< The method of decryption is not supported by the library */
+
 	}
 
 	public static class Result {
@@ -67,11 +71,7 @@ public class EasyCryptoAPI {
 			} else if (method.equalsIgnoreCase("cyr")) {
 				CryptoMethod theImpl = new CyrMethod();
 				return theImpl.encrypt(toEncrypt);
-			} else if (method.equalsIgnoreCase("rot13")){
-				CryptoMethod theImpl = new Rot13Method();
-				return theImpl.encrypt(toEncrypt);
 			}
-
 		} catch (Exception e) {
 			return new Result(ResultCode.EError, e.getMessage());
 		}
@@ -96,16 +96,13 @@ public class EasyCryptoAPI {
 			} else if (method.equalsIgnoreCase("cyr")) {
 				CryptoMethod theImpl = new CyrMethod();
 				return theImpl.decrypt(toDecrypt);
-			}else if (method.equalsIgnoreCase("rot13")){
-				CryptoMethod theImpl = new Rot13Method();
-				return theImpl.decrypt(toDecrypt);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new Result(ResultCode.EError, e.getMessage());
+			return new Result(ResultCode.DError, e.getMessage());
 		}
 
-		return new Result(ResultCode.ENotSupported, "Error: Method not supported!");
+		return new Result(ResultCode.DNotSupported, "Error: Method not supported!");
 	}
 
 	/** To query the version of the library.
@@ -128,8 +125,6 @@ public class EasyCryptoAPI {
 			method = new MatrixMethod();
 			methods += method.method();
 			method = new CyrMethod();
-			methods += "," + method.method();
-			method = new Rot13Method();
 			methods += "," + method.method();
 		} catch (Exception e) {
 			// ....
