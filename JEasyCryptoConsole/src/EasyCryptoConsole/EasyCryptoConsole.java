@@ -22,6 +22,7 @@ public class EasyCryptoConsole {
                 String d = console.readLine("Do you wish to encrypt or decrypt (e or d)? > ");
                 EasyCryptoAPI.Result result;
 
+<<<<<<< HEAD
                 if (d.equalsIgnoreCase("e")) {
                     String e = console.readLine("Please enter text to be encrypted > ");
                     String m = console.readLine("Please enter encryption method > ");
@@ -41,6 +42,27 @@ public class EasyCryptoConsole {
                         break;
                     }
                     case EError:
+=======
+				if (d.equalsIgnoreCase("e")) {
+				    String e = console.readLine("Please enter text to be encrypted > ");
+				    String m = console.readLine("Please enter encryption method > ");
+					result = EasyCryptoAPI.encrypt(e, m);
+				} else if (d.equalsIgnoreCase("d")) {
+				    String n = console.readLine("Please enter text to be decrypted > ");
+				    String o = console.readLine("Please enter decryption method > ");
+				    result = EasyCryptoAPI.decrypt(n, o);
+				} else {
+					return;
+				}
+				switch (result.resultCode()) {
+				    case ESuccess: {
+				        console.printf("\n Encryption Successful: %d - %s\n", result.resultCode().ordinal(), result.resultCode().toString());
+				        console.printf("Encrypted text is: %s \n", result.result());
+				        System.out.println(result.result());
+				        break;
+				    }
+				    case EError:
+>>>>>>> 131b4d5f9bdf6ab00c7a2b1adf516260414a5720
                     case ENotSupported: {
                         console.printf("Method does not conform Please try again: \n");
                         break;
@@ -56,6 +78,7 @@ public class EasyCryptoConsole {
                         console.printf("Method does not conform Please try again: \n");
                         break;
                     }
+<<<<<<< HEAD
                 }
             }
         } catch (UnsupportedEncodingException e1) {
@@ -65,3 +88,14 @@ public class EasyCryptoConsole {
         }
     }
 }
+=======
+				}
+			}
+		} catch (UnsupportedEncodingException e1) {
+		    e1.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+>>>>>>> 131b4d5f9bdf6ab00c7a2b1adf516260414a5720
