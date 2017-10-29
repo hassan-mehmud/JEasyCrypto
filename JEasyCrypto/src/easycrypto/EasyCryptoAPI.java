@@ -26,7 +26,7 @@ public class EasyCryptoAPI {
 	public enum ResultCode {
 		ESuccess,      /*!< Text was successfully en/decrypted. */
 		EError,        /*!< There was an error with en/decryption. */
-		ENotSupported  /*!< The method of en/decription is not supported by the library */
+		ENotSupported,  /*!< The method of en/decription is not supported by the library */
 		DSuccess,      /*!< Text was successfully decrypted. */
 		DError,        /*!< There was an error with decryption. */
 		DNotSupported  /*!< The method of decryption is not supported by the library. */
